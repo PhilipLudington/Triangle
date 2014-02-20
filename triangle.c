@@ -340,6 +340,16 @@
 
 #define ONETHIRD 0.333333333333333333333333333333333333333333333333333333333333
 
+/* When compiling with Visual Studio 2010 */
+// #define VS2010
+
+/* Added to remove deprecation warnings from strcpy and fopen */
+#ifdef VS2010
+	#define _CRT_SECURE_NO_WARNINGS
+#else
+	#error "Warning! Deprecation warning, this code uses strcpy and fopen!"
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -6951,7 +6961,7 @@ struct badtriang *badtri;
     length *= multiplier;
   }
   /* `length' is approximately squareroot(2.0) to what exponent? */
-  exponent = 2.0 * exponent + (length > SQUAREROOTTWO);
+  exponent = 2 * exponent + (length > SQUAREROOTTWO);
   /* `exponent' is now in the range 0...2047 for IEEE double precision.   */
   /*   Choose a queue in the range 0...4095.  The shortest edges have the */
   /*   highest priority (queue 4095).                                     */

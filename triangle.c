@@ -344,10 +344,12 @@
 // #define VS2010
 
 /* Added to remove deprecation warnings from strcpy and fopen */
+#ifdef _MSC_VER
 #ifdef VS2010
 	#define _CRT_SECURE_NO_WARNINGS
 #else
 	#error "Warning! Deprecation warning, this code uses strcpy and fopen!"
+#endif
 #endif
 
 #include <stdio.h>
